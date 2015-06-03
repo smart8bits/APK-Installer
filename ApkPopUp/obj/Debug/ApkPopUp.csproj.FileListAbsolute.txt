@@ -30,3 +30,13 @@ C:\Users\smart8\Documents\GitHub\ApkPopUp\ApkPopUp\obj\Debug\ApkPopUp.Form1.reso
 C:\Users\smart8\Documents\GitHub\ApkPopUp\ApkPopUp\obj\Debug\ApkPopUp.Properties.Resources.resources
 C:\Users\smart8\Documents\GitHub\ApkPopUp\ApkPopUp\obj\Debug\ApkPopUp.ApkPanel.resources
 C:\Users\smart8\Documents\GitHub\ApkPopUp\ApkPopUp\obj\Debug\ApkPopUp.csproj.GenerateResource.Cache
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\bin\Debug\ApkPopUp.exe.config
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.exe
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.pdb
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\bin\Debug\ApkPopUp.exe
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\bin\Debug\ApkPopUp.pdb
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.csprojResolveAssemblyReference.cache
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.Form1.resources
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.Properties.Resources.resources
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.ApkPanel.resources
+C:\Users\smart8\Documents\GitHub\APK-Installer\ApkPopUp\obj\Debug\ApkPopUp.csproj.GenerateResource.Cache

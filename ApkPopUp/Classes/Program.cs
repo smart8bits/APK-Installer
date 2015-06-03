@@ -15,8 +15,8 @@ namespace ApkPopUp
         [STAThread]
         static void Main(string[] args)
         {
-            args = new string[1];
-            args[0] = @"C:\Users\smart8\Desktop\app\com.dama.hardwareinfo-1\base.apk";
+            //args = new string[1];
+            //args[0] = @"C:\Users\smart8\Desktop\app\com.dama.hardwareinfo-1\base.apk";
             if (args.Length > 0)
             {
                 if (File.Exists(args[0]))
