@@ -145,24 +145,42 @@ namespace ApkPopUp
         private static void Do(Job jobToDo)
         {
             string Cmd;
-            if (jobToDo.device.ID != null)
+            if (jobToDo.device != null)
             {
-                adb.StartInfo.Arguments = string.Format("-s \"{0}\" get-state", jobToDo.device.ID);
-                Cmd = string.Format("-s \"{0}\" {1}", jobToDo.device.ID, jobToDo.AdbCmd);
+                if (jobToDo.device.ID != null)
+                {
+                    adb.StartInfo.Arguments = string.Format("-s \"{0}\" get-state", jobToDo.device.ID);
+                    Cmd = string.Format("-s \"{0}\" {1}", jobToDo.device.ID, jobToDo.AdbCmd);
+                }
+                else
+                {
+                    adb.StartInfo.Arguments = string.Format("get-state");
+                    Cmd = jobToDo.AdbCmd;
+                }
+                adb.Start();
+                adb.BeginOutputReadLine();
+                adb.WaitForExit();
+                jobToDo.device.setState(outPutStr.ToString());
+                outPutStr.Clear();
+                adb.CancelOutputRead();
+                if (jobToDo.device.status == Device.statusEnum.online)
+                {
+                    adb.StartInfo.Arguments = Cmd;
+                    adb.Start();
+                    adb.BeginOutputReadLine();
+                    adb.WaitForExit();
+                    jobToDo.result = outPutStr.ToString();
+                    outPutStr.Clear();
+                    adb.CancelOutputRead();
+                }
+                else
+                {
+                    jobToDo.result = "Device is Offline";
+                }
             }
             else
             {
-                adb.StartInfo.Arguments = string.Format("get-state");
                 Cmd = jobToDo.AdbCmd;
-            }
-            adb.Start();
-            adb.BeginOutputReadLine();
-            adb.WaitForExit();
-            jobToDo.device.setState(outPutStr.ToString());
-            outPutStr.Clear();
-            adb.CancelOutputRead();
-            if (jobToDo.device.status == Device.statusEnum.online)
-            {
                 adb.StartInfo.Arguments = Cmd;
                 adb.Start();
                 adb.BeginOutputReadLine();
@@ -170,10 +188,6 @@ namespace ApkPopUp
                 jobToDo.result = outPutStr.ToString();
                 outPutStr.Clear();
                 adb.CancelOutputRead();
-            }
-            else
-            {
-                jobToDo.result = "Device is Offline";
             }
             jobToDo.done = true;
             AnalyseResult(jobToDo);
@@ -194,7 +208,7 @@ namespace ApkPopUp
                     
                     int start = 0;
                     int end = job.result.IndexOf("\n");
-                    devicesList.Clear();
+                    P_devicesList.Clear();
                     while (end != -1)
                     {
                         start = end + 1;
@@ -207,7 +221,7 @@ namespace ApkPopUp
                         string ID = device.Substring(0, IDEnd);
                         string status = device.Substring(IDEnd + 1, endOfLine - IDEnd);
                         Device newDevice = new Device(ID);
-                        devicesList.Add(newDevice);
+                        P_devicesList.Add(newDevice);
                     }
                     break;
 
@@ -293,8 +307,15 @@ namespace ApkPopUp
         #endregion
 
         #region Get Conected Devices
-        public static List<Device> devicesList = new List<Device>();
-        private static void refreshDevicesList()
+        private static List<Device> P_devicesList = new List<Device>();
+        public static List<Device> devicesList
+        {
+            get
+            {
+                return P_devicesList;
+            }
+        }
+        public static void refreshDevicesList()
         {
             Job getDevices = new Job("Get Devices", null, Jobs.Devices);
             addJob(getDevices);
